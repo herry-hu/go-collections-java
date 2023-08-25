@@ -3,7 +3,7 @@ package concurrenthashmap
 import (
 	"bytes"
 	"fmt"
-	"go-collections-java/lang"
+	"gitee.com/herry-hu/go-collections-java/lang"
 	"hash/fnv"
 	"reflect"
 	"sync/atomic"

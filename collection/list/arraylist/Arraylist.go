@@ -3,7 +3,7 @@ package arraylist
 import (
 	"bytes"
 	"fmt"
-	"go-collections-java/lang"
+	"gitee.com/herry-hu/go-collections-java/lang"
 )
 
 type ArrayList[T lang.Comparable] struct {

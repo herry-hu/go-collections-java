@@ -3,7 +3,7 @@ package treeset
 import (
 	"container/list"
 	"fmt"
-	"go-collections-java/lang"
+	"gitee.com/herry-hu/go-collections-java/lang"
 	"reflect"
 	"strings"
 )

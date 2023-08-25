@@ -5,7 +5,7 @@ package linkedlist
 import (
 	"bytes"
 	"fmt"
-	"go-collections-java/lang"
+	"gitee.com/herry-hu/go-collections-java/lang"
 )
 
 type Node[T lang.Comparable] struct {
