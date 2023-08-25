@@ -1,4 +1,4 @@
-package herry
+package lang
 
 import "strings"
 
