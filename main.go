@@ -31,13 +31,20 @@ func (p Person) CompareTo(other interface{}) int {
 
 func main() {
 	//arraylist
-	list := arraylist.NewArrayList[lang.Int]()
+	list := arraylist.NewArrayList[herry.Int]()
 	list.Add(1)
 	list.Add(2)
 	list.Add(3)
 	fmt.Println(list)
 	list.Remove(1)
 	fmt.Println(list)
+
+	ints := []herry.Int{1, 2, 3, 4}
+	list.AddAll(ints...)
+	fmt.Println(list)
+	for index, value := range ints {
+		fmt.Printf("index:value = %v:%v \n", index, value)
+	}
 
 	persons := arraylist.NewArrayList[Person]()
 	persons.Add(Person{"张三", 20})
@@ -46,7 +53,7 @@ func main() {
 	fmt.Println(persons)
 
 	//linkedlist
-	linkedList := linkedlist.NewLinkedList[lang.Int]()
+	linkedList := linkedlist.NewLinkedList[herry.Int]()
 	linkedList.Add(1)
 	linkedList.Add(2)
 	linkedList.Add(3)
@@ -54,7 +61,7 @@ func main() {
 	linkedList.Remove(1)
 	fmt.Println(linkedList)
 	//doublelinkedlist
-	do := doublelinkedlist.NewLinkedList[lang.Int]()
+	do := doublelinkedlist.NewLinkedList[herry.Int]()
 	do.Add(1)
 	do.Add(2)
 	do.Add(3)
@@ -62,7 +69,7 @@ func main() {
 	do.Remove(2)
 	fmt.Println(do)
 	//hashmap
-	hashMap := hashmap.NewHashMap[lang.String, lang.Int]()
+	hashMap := hashmap.NewHashMap[herry.String, herry.Int]()
 	hashMap.Put("a", 123)
 	hashMap.Put("b", 234)
 	hashMap.Put("c", 345)
@@ -73,7 +80,7 @@ func main() {
 	fmt.Println(hashMap)
 	//并发安全hashmap
 	//hashmap
-	coHashmap := concurrenthashmap.NewConcurrentHashMap[lang.String, lang.Int]()
+	coHashmap := concurrenthashmap.NewConcurrentHashMap[herry.String, herry.Int]()
 	coHashmap.Put("a", 123)
 	coHashmap.Put("b", 234)
 	coHashmap.Put("c", 345)
@@ -83,14 +90,14 @@ func main() {
 	coHashmap.Delete("a")
 	fmt.Println(coHashmap)
 	//hashset
-	set := hashset.NewHashSet[lang.String]()
+	set := hashset.NewHashSet[herry.String]()
 	set.Add("apple")
 	set.Add("banana")
 	set.Add("orange")
 	set.Add("apple")
 	fmt.Println(set)
 	//treeset
-	tree := treeset.NewTreeSet[lang.String]()
+	tree := treeset.NewTreeSet[herry.String]()
 	tree.Add("apple")
 	tree.Add("banana")
 	tree.Add("orange")

@@ -20,6 +20,12 @@ func (list *ArrayList[T]) Add(item T) {
 	list.size++
 }
 
+func (list *ArrayList[T]) AddAll(items ...T) {
+	for _, item := range items {
+		list.Add(item)
+	}
+}
+
 func (list *ArrayList[T]) Get(index int) T {
 	return list.data[index]
 }
