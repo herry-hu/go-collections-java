@@ -1,3 +1,3 @@
-module gitee.com/herry-hu/go-collections-java
+module go-collections-java
 
 go 1.20

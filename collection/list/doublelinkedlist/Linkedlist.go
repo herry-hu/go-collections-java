@@ -3,7 +3,7 @@ package doublelinkedlist
 import (
 	"bytes"
 	"fmt"
-	"gitee.com/herry-hu/go-collections-java/lang"
+	"go-collections-java/lang"
 )
 
 type Node[T lang.Comparable] struct {

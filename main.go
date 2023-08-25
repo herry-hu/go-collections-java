@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"gitee.com/herry-hu/go-collections-java/collection/list/arraylist"
-	"gitee.com/herry-hu/go-collections-java/collection/list/doublelinkedlist"
-	"gitee.com/herry-hu/go-collections-java/collection/list/linkedlist"
-	"gitee.com/herry-hu/go-collections-java/collection/set/hashset"
-	"gitee.com/herry-hu/go-collections-java/collection/set/treeset"
-	"gitee.com/herry-hu/go-collections-java/lang"
-	"gitee.com/herry-hu/go-collections-java/map/concurrenthashmap"
-	"gitee.com/herry-hu/go-collections-java/map/hashmap"
+	"go-collections-java/collection/list/arraylist"
+	"go-collections-java/collection/list/doublelinkedlist"
+	"go-collections-java/collection/list/linkedlist"
+	"go-collections-java/collection/set/hashset"
+	"go-collections-java/collection/set/treeset"
+	"go-collections-java/lang"
+	"go-collections-java/map/concurrenthashmap"
+	"go-collections-java/map/hashmap"
 )
 
 type Person struct {

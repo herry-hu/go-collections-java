@@ -3,7 +3,7 @@ package hashmap
 import (
 	"bytes"
 	"fmt"
-	"gitee.com/herry-hu/go-collections-java/lang"
+	"go-collections-java/lang"
 	"hash/fnv"
 	"reflect"
 )
