@@ -4,8 +4,9 @@ package hashset
 
 import (
 	"fmt"
-	"gitee.com/herry-hu/go-collections-java/lang"
-	"gitee.com/herry-hu/go-collections-java/map/hashmap"
+	"github.com/herry-hu/go-collections-java/lang"
+	"github.com/herry-hu/go-collections-java/map/hashmap"
+
 	"strings"
 	"sync"
 )
