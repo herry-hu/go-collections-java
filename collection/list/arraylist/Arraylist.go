@@ -3,15 +3,14 @@ package arraylist
 import (
 	"bytes"
 	"fmt"
-	"github.com/herry-hu/go-collections-java/lang"
 )
 
-type ArrayList[T lang.Comparable] struct {
+type ArrayList[T comparable] struct {
 	size int
 	data []T
 }
 
-func NewArrayList[T lang.Comparable]() *ArrayList[T] {
+func NewArrayList[T comparable]() *ArrayList[T] {
 	return &ArrayList[T]{size: 0, data: make([]T, 0)}
 }
 
@@ -42,7 +41,7 @@ func (list *ArrayList[T]) Remove(index int) {
 
 func (list *ArrayList[T]) IndexOf(item T) int {
 	for i, v := range list.data {
-		if v.CompareTo(item) == 0 {
+		if v == item {
 			return i
 		}
 	}
@@ -51,7 +50,7 @@ func (list *ArrayList[T]) IndexOf(item T) int {
 
 func (list *ArrayList[T]) LastIndexOf(item T) int {
 	for i := list.size - 1; i >= 0; i-- {
-		if list.data[i].CompareTo(item) == 0 {
+		if list.data[i] == item {
 			return i
 		}
 	}

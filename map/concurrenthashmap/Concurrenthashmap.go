@@ -3,20 +3,19 @@ package concurrenthashmap
 import (
 	"bytes"
 	"fmt"
-	"github.com/herry-hu/go-collections-java/lang"
 	"hash/fnv"
 	"reflect"
 	"sync/atomic"
 	"unsafe"
 )
 
-type entry[T lang.Comparable, V lang.Comparable] struct {
+type entry[T comparable, V comparable] struct {
 	key   T              // 键
 	value V              // 值
 	next  unsafe.Pointer // 指向下一个节点的指针
 }
 
-type ConcurrentHashMap[T lang.Comparable, V lang.Comparable] struct {
+type ConcurrentHashMap[T comparable, V comparable] struct {
 	data           []*entry[T, V] // 存储数据的切片
 	capacity       int            // 哈希表容量
 	size           int            // 哈希表中元素数量
@@ -26,7 +25,7 @@ type ConcurrentHashMap[T lang.Comparable, V lang.Comparable] struct {
 }
 
 // 创建一个新的并发安全的哈希表
-func NewConcurrentHashMap[T lang.Comparable, V lang.Comparable]() *ConcurrentHashMap[T, V] {
+func NewConcurrentHashMap[T comparable, V comparable]() *ConcurrentHashMap[T, V] {
 	return &ConcurrentHashMap[T, V]{
 		data:           make([]*entry[T, V], 16),
 		capacity:       16,
@@ -65,7 +64,7 @@ func (h *ConcurrentHashMap[T, V]) Put(key T, value V) {
 
 		// 遍历该索引对应的链表，查找是否存在相同的键
 		for e := oldEntry; e != nil; e = (*entry[T, V])(atomic.LoadPointer((*unsafe.Pointer)(unsafe.Pointer(&e.next)))) {
-			if e.key.CompareTo(key) == 0 {
+			if e.key == key {
 				// 如果存在相同的键，更新其对应的值
 				atomic.StorePointer((*unsafe.Pointer)(unsafe.Pointer(&e.value)), unsafe.Pointer(&value))
 				return
@@ -89,7 +88,7 @@ func (h *ConcurrentHashMap[T, V]) Get(key T) (V, bool) {
 
 	// 遍历该索引对应的链表，查找是否存在相同的键
 	for e := (*entry[T, V])(atomic.LoadPointer((*unsafe.Pointer)(unsafe.Pointer(&h.data[index])))); e != nil; e = (*entry[T, V])(atomic.LoadPointer((*unsafe.Pointer)(unsafe.Pointer(&e.next)))) {
-		if e.key.CompareTo(key) == 0 {
+		if e.key == key {
 			return e.value, true // 如果存在相同的键，返回其对应的值和true
 		}
 	}
@@ -118,7 +117,7 @@ func (h *ConcurrentHashMap[T, V]) Delete(key T) bool {
 
 		// 遍历该索引对应的链表，查找是否存在相同的键，并删除其对应的节点
 		for e := oldEntry; e != nil; e = (*entry[T, V])(atomic.LoadPointer((*unsafe.Pointer)(unsafe.Pointer(&e.next)))) {
-			if e.key.CompareTo(key) == 0 {
+			if e.key == key {
 				found = true
 				if prev == nil {
 					// 如果要删除的节点是链表的头节点

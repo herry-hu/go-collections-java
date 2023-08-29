@@ -3,22 +3,21 @@ package doublelinkedlist
 import (
 	"bytes"
 	"fmt"
-	"github.com/herry-hu/go-collections-java/lang"
 )
 
-type Node[T lang.Comparable] struct {
+type Node[T comparable] struct {
 	value T        // 节点的值
 	prev  *Node[T] // 上一个节点的指针
 	next  *Node[T] // 下一个节点的指针
 }
 
-type LinkedList[T lang.Comparable] struct {
+type LinkedList[T comparable] struct {
 	head *Node[T] // 链表头部节点
 	tail *Node[T] // 链表尾部节点
 	size int      // 链表大小
 }
 
-func NewLinkedList[T lang.Comparable]() *LinkedList[T] {
+func NewDoubleLinkedList[T comparable]() *LinkedList[T] {
 	return &LinkedList[T]{
 		head: nil,
 		tail: nil,
@@ -132,7 +131,7 @@ func (list *LinkedList[T]) getNode(index int) *Node[T] {
 	return current
 }
 
-type Set[T lang.Comparable] struct {
+type Set[T comparable] struct {
 	list *LinkedList[T] // 基于双向链表实现的 LinkedList
 }
 
@@ -146,7 +145,7 @@ func (set *Set[T]) Add(item T) {
 // 从集合中删除元素。
 func (set *Set[T]) Remove(item T) bool {
 	for i := 0; i < set.list.Size(); i++ {
-		if set.list.Get(i).CompareTo(item) == 0 {
+		if set.list.Get(i) == item {
 			set.list.Remove(i)
 			return true
 		}
@@ -157,7 +156,7 @@ func (set *Set[T]) Remove(item T) bool {
 // 检查集合中是否包含指定元素。
 func (set *Set[T]) Contains(item T) bool {
 	for i := 0; i < set.list.Size(); i++ {
-		if set.list.Get(i).CompareTo(item) == 0 {
+		if set.list.Get(i) == item {
 			return true
 		}
 	}

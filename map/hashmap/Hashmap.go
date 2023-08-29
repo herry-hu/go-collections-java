@@ -3,18 +3,17 @@ package hashmap
 import (
 	"bytes"
 	"fmt"
-	"github.com/herry-hu/go-collections-java/lang"
 	"hash/fnv"
 	"reflect"
 )
 
-type entry[T lang.Comparable, V lang.Comparable] struct {
+type entry[T comparable, V comparable] struct {
 	key   T            // 键
 	value V            // 值
 	next  *entry[T, V] // 指向下一个节点的指针
 }
 
-type HashMap[T lang.Comparable, V lang.Comparable] struct {
+type HashMap[T comparable, V comparable] struct {
 	data           []*entry[T, V] // 存储数据的切片
 	capacity       int            // 哈希表容量
 	size           int            // 哈希表中元素数量
@@ -24,7 +23,7 @@ type HashMap[T lang.Comparable, V lang.Comparable] struct {
 }
 
 // 创建一个新的哈希表
-func NewHashMap[T lang.Comparable, V lang.Comparable]() *HashMap[T, V] {
+func NewHashMap[T comparable, V comparable]() *HashMap[T, V] {
 	return &HashMap[T, V]{
 		data:           make([]*entry[T, V], 16),
 		capacity:       16,
@@ -55,7 +54,7 @@ func (h *HashMap[T, V]) Put(key T, value V) {
 
 	// 遍历该索引对应的链表或红黑树，查找是否存在相同的键
 	for e := h.data[index]; e != nil; e = e.next {
-		if e.key.CompareTo(key) == 0 {
+		if e.key == key {
 			e.value = value // 如果存在相同的键，更新其对应的值
 			return
 		}
@@ -74,7 +73,7 @@ func (h *HashMap[T, V]) Get(key T) (V, bool) {
 
 	// 遍历该索引对应的链表或红黑树，查找是否存在相同的键
 	for e := h.data[index]; e != nil; e = e.next {
-		if e.key.CompareTo(key) == 0 {
+		if e.key == key {
 			return e.value, true // 如果存在相同的键，返回其对应的值和true
 		}
 	}
@@ -92,7 +91,7 @@ func (h *HashMap[T, V]) Delete(key T) bool {
 	// 遍历该索引对应的链表或红黑树，查找是否存在相同的键，并删除其对应的节点
 	prev := h.data[index]
 	for e := h.data[index]; e != nil; e = e.next {
-		if e.key.CompareTo(key) == 0 {
+		if e.key == key {
 			if prev == e {
 				h.data[index] = e.next
 			} else {

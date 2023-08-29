@@ -1,40 +1,21 @@
-// hashset.go
-
 package hashset
 
 import (
 	"fmt"
-	"github.com/herry-hu/go-collections-java/lang"
-	"github.com/herry-hu/go-collections-java/map/hashmap"
-
+	"gitee.com/herry-hu/go-collections-java/map/hashmap"
 	"strings"
 	"sync"
 )
 
-type Int int
-
-func (i Int) CompareTo(other interface{}) int {
-	if j, ok := other.(Int); ok {
-		if i < j {
-			return -1
-		} else if i > j {
-			return 1
-		} else {
-			return 0
-		}
-	}
-	panic("not an Int")
-}
-
 // HashSet 是一个线程安全的哈希集合
-type HashSet[T lang.Comparable] struct {
-	items *hashmap.HashMap[T, Int] // 存储元素的哈希集合
+type HashSet[T comparable] struct {
+	items *hashmap.HashMap[T, int] // 存储元素的哈希集合
 	lock  sync.RWMutex             // 用于保护集合的读写锁
 }
 
 // NewHashSet 创建一个新的HashSet
-func NewHashSet[T lang.Comparable]() *HashSet[T] {
-	hashMap := hashmap.NewHashMap[T, Int]()
+func NewHashSet[T comparable]() *HashSet[T] {
+	hashMap := hashmap.NewHashMap[T, int]()
 	return &HashSet[T]{
 		items: hashMap,
 	}
@@ -95,7 +76,7 @@ func (set *HashSet[T]) String() string {
 	defer set.lock.RUnlock()
 
 	var items []string
-	set.items.ForEach(func(key T, _ Int) {
+	set.items.ForEach(func(key T, _ int) {
 		items = append(items, fmt.Sprintf("%v", key))
 	})
 	return fmt.Sprintf("HashSet{%s}", strings.Join(items, ", "))
@@ -109,7 +90,7 @@ func (set *HashSet[T]) Iterator() <-chan T {
 		set.lock.RLock()
 		defer set.lock.RUnlock()
 
-		set.items.ForEach(func(key T, _ Int) {
+		set.items.ForEach(func(key T, _ int) {
 			ch <- key
 		})
 		close(ch)

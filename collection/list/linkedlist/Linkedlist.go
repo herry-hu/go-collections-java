@@ -1,35 +1,32 @@
-// list_linkedlist.go
-
 package linkedlist
 
 import (
 	"bytes"
 	"fmt"
-	"github.com/herry-hu/go-collections-java/lang"
 )
 
-type Node[T lang.Comparable] struct {
+type Node[T comparable] struct {
 	value T        // 节点的值
 	next  *Node[T] // 下一个节点的指针
 }
 
-type LinkedList[T lang.Comparable] struct {
+type LinkedList[T comparable] struct {
 	head *Node[T] // 链表头部节点
 	size int      // 链表大小
 }
 
-type List[T lang.Comparable] struct {
+type List[T comparable] struct {
 	linkedList *LinkedList[T] // 基于单向链表实现的 LinkedList
 }
 
-func NewLinkedList[T lang.Comparable]() *LinkedList[T] {
+func NewLinkedList[T comparable]() *LinkedList[T] {
 	return &LinkedList[T]{
 		head: nil,
 		size: 0,
 	}
 }
 
-func NewList[T lang.Comparable]() *List[T] {
+func NewList[T comparable]() *List[T] {
 	return &List[T]{
 		linkedList: NewLinkedList[T](),
 	}
