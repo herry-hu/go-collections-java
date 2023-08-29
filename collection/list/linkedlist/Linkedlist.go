@@ -26,12 +26,6 @@ func NewLinkedList[T comparable]() *LinkedList[T] {
 	}
 }
 
-func NewList[T comparable]() *List[T] {
-	return &List[T]{
-		linkedList: NewLinkedList[T](),
-	}
-}
-
 // 将指定元素添加到列表末尾。
 func (list *LinkedList[T]) Add(item T) {
 	node := &Node[T]{value: item, next: nil}
